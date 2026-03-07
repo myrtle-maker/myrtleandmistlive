@@ -1,22 +1,20 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Helmet } from 'react-helmet-async';
 import { useTheme } from '../components/ThemeContext';
 
 const ComingSoonPage: React.FC = () => {
   const { theme } = useTheme();
   const pathname = usePathname();
 
+  useEffect(() => {
+    document.title = 'Coming Soon | Myrtle & Mist';
+  }, []);
+
   return (
     <>
-      <Helmet>
-        <title>Coming Soon | Myrtle &amp; Mist</title>
-        <meta name="robots" content="noindex" />
-      </Helmet>
-
       <div className={`min-h-[70vh] flex flex-col items-center justify-center py-24 px-4 theme-transition ${
         theme === 'myrtle' ? 'bg-myrtle-bg text-myrtle-text' : 'bg-mist-bg text-mist-text'
       }`}>

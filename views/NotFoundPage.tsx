@@ -1,20 +1,18 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { Helmet } from 'react-helmet-async';
 import { useTheme } from '../components/ThemeContext';
 
 const NotFoundPage: React.FC = () => {
   const { theme } = useTheme();
 
+  useEffect(() => {
+    document.title = '404 Not Found | Myrtle & Mist';
+  }, []);
+
   return (
     <>
-      <Helmet>
-        <title>404 Not Found | Myrtle &amp; Mist</title>
-        <meta name="robots" content="noindex" />
-      </Helmet>
-
       <div className={`min-h-screen flex items-center justify-center theme-transition ${
         theme === 'myrtle' ? 'bg-myrtle-bg' : 'bg-mist-bg'
       }`}>

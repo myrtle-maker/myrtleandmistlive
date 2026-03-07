@@ -1,9 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { Helmet } from 'react-helmet-async';
 import { useTheme } from '../components/ThemeContext';
 import Breadcrumbs from '../components/Breadcrumbs';
 
@@ -26,17 +25,12 @@ const PlantEnergyPage: React.FC = () => {
     .map(w => w.charAt(0).toUpperCase() + w.slice(1))
     .join(' ');
 
+  useEffect(() => {
+    document.title = `${displayName} Energy Profile | Myrtle & Mist`;
+  }, [displayName]);
+
   return (
     <>
-      <Helmet>
-        <title>{displayName} Energy Profile | Myrtle &amp; Mist</title>
-        <meta
-          name="description"
-          content={`The energetic and spiritual properties of ${displayName} — chakras, elements, and ritual uses.`}
-        />
-        <link rel="canonical" href={`https://myrtleandmist.com/plants/${displaySlug}/energy/`} />
-      </Helmet>
-
       <Breadcrumbs title={`${displayName} — Energy Profile`} />
 
       <article className={`min-h-[70vh] py-16 px-4 theme-transition ${

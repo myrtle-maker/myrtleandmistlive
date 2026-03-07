@@ -2,7 +2,6 @@
 
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { Helmet } from 'react-helmet-async';
 import { useTheme } from '../components/ThemeContext';
 import { ARTICLES } from '../data/articles';
 import { MYRTLE_PRODUCTS, MIST_PRODUCTS } from '../data/products';
@@ -102,19 +101,16 @@ const ArticlePage: React.FC = () => {
     },
   };
 
+  useEffect(() => {
+    document.title = `${activeContent.title} | Myrtle & Mist`;
+  }, [activeContent.title]);
+
   return (
     <>
-      <Helmet>
-        <title>{activeContent.title} | Myrtle &amp; Mist</title>
-        <meta name="description" content={activeContent.excerpt} />
-        <link rel="canonical" href={`https://myrtleandmist.com/journal/${article.id}`} />
-        <meta property="og:title" content={`${activeContent.title} | Myrtle & Mist`} />
-        <meta property="og:description" content={activeContent.excerpt} />
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content={article.image} />
-        <meta property="og:url" content={`https://myrtleandmist.com/journal/${article.id}`} />
-        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
-      </Helmet>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
 
       <div className={`min-h-screen pt-24 pb-20 theme-transition ${
         theme === 'myrtle' ? 'bg-myrtle-bg' : 'bg-mist-bg'
