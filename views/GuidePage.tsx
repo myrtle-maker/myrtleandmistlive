@@ -1,8 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Helmet } from 'react-helmet-async';
 import { useTheme } from '../components/ThemeContext';
 import { PILLAR_CONTENT } from '../data/pillarContent';
 import { ARTICLES } from '../data/articles';
@@ -20,19 +19,12 @@ const GuidePage: React.FC = () => {
     }
   };
 
-  return (
-    <>
-      <Helmet>
-        <title>{data.title} | Myrtle &amp; Mist</title>
-        <meta name="description" content={data.description} />
-        <link rel="canonical" href="https://myrtleandmist.com/the-guide" />
-        <meta property="og:title" content={`${data.title} | Myrtle & Mist`} />
-        <meta property="og:description" content={data.description} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://myrtleandmist.com/the-guide" />
-      </Helmet>
+  useEffect(() => {
+    document.title = `${data.title} | Myrtle & Mist`;
+  }, [data.title]);
 
-      <div className={`min-h-screen pt-24 pb-20 theme-transition ${
+  return (
+    <div className={`min-h-screen pt-24 pb-20 theme-transition ${
         theme === 'myrtle' ? 'bg-myrtle-bg' : 'bg-mist-bg'
       }`}>
         {/* Hero Banner */}
@@ -228,7 +220,7 @@ const GuidePage: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect } from 'react';
 import { useTheme } from '../components/ThemeContext';
 import Hero from '../components/Hero';
 import ContentHub from '../components/ContentHub';
@@ -22,6 +21,10 @@ const HomePage: React.FC = () => {
     ? 'Expert plant care guides, tools, and botanicals for your indoor jungle.'
     : 'Mindfulness tools, wellness rituals, and curated products for slow living.';
 
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
   const websiteJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -32,16 +35,10 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href="https://myrtleandmist.com/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://myrtleandmist.com/" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <script type="application/ld+json">{JSON.stringify(websiteJsonLd)}</script>
-      </Helmet>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
 
       <Hero />
       <ContentHub />

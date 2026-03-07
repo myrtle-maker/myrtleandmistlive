@@ -1,9 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { Helmet } from 'react-helmet-async';
 import { useTheme } from '../components/ThemeContext';
 import Breadcrumbs from '../components/Breadcrumbs';
 
@@ -28,17 +27,12 @@ const PlantPage: React.FC = () => {
     .map(w => w.charAt(0).toUpperCase() + w.slice(1))
     .join(' ');
 
+  useEffect(() => {
+    document.title = `${displayName} Care Guide | Myrtle & Mist`;
+  }, [displayName]);
+
   return (
     <>
-      <Helmet>
-        <title>{displayName} Care Guide | Myrtle &amp; Mist</title>
-        <meta
-          name="description"
-          content={`Complete care guide for ${displayName} — light, watering, soil, and propagation tips.`}
-        />
-        <link rel="canonical" href={`https://myrtleandmist.com/plants/${displaySlug}/`} />
-      </Helmet>
-
       <Breadcrumbs title={`${displayName} — Care Guide`} />
 
       <article className={`min-h-[70vh] py-16 px-4 theme-transition ${
