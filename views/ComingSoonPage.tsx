@@ -1,11 +1,14 @@
+'use client';
+
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Helmet } from 'react-helmet-async';
 import { useTheme } from '../components/ThemeContext';
 
 const ComingSoonPage: React.FC = () => {
   const { theme } = useTheme();
-  const { pathname } = useLocation();
+  const pathname = usePathname();
 
   return (
     <>
@@ -38,7 +41,7 @@ const ComingSoonPage: React.FC = () => {
         </p>
 
         <Link
-          to="/"
+          href="/"
           className={`text-sm uppercase tracking-widest border-b pb-0.5 transition-colors ${
             theme === 'myrtle'
               ? 'text-myrtle-accent border-myrtle-accent hover:text-myrtle-text hover:border-myrtle-text'

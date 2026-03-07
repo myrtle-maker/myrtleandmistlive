@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Helmet } from 'react-helmet-async';
 import { useTheme } from '../components/ThemeContext';
 
@@ -33,7 +35,7 @@ const NotFoundPage: React.FC = () => {
             The page you're looking for doesn't exist or has been moved.
           </p>
           <Link
-            to="/"
+            href="/"
             className={`px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs inline-block transition-all hover:-translate-y-1 ${
               theme === 'myrtle'
                 ? 'bg-myrtle-accent text-white hover:bg-myrtle-text'

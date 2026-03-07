@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useTheme } from './ThemeContext';
 import Logo from './Logo';
 
@@ -33,16 +35,16 @@ const Footer: React.FC = () => {
           <div>
             <h4 className={`mb-4 ${theme === 'myrtle' ? 'font-geo font-bold' : 'font-serif'}`}>Read</h4>
             <ul className="space-y-2 text-sm opacity-70">
-              <li><Link to="/#journal" className="hover:text-white transition-colors">Journal</Link></li>
-              <li><Link to="/the-guide" className="hover:text-white transition-colors">Care Guides</Link></li>
-              <li><Link to="/#tools" className="hover:text-white transition-colors">Rituals</Link></li>
+              <li><Link href="/#journal" className="hover:text-white transition-colors">Journal</Link></li>
+              <li><Link href="/the-guide" className="hover:text-white transition-colors">Care Guides</Link></li>
+              <li><Link href="/#tools" className="hover:text-white transition-colors">Rituals</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className={`mb-4 ${theme === 'myrtle' ? 'font-geo font-bold' : 'font-serif'}`}>Company</h4>
             <ul className="space-y-2 text-sm opacity-70">
-              <li><Link to="/#about" className="hover:text-white transition-colors">About Us</Link></li>
+              <li><Link href="/#about" className="hover:text-white transition-colors">About Us</Link></li>
               <li><a href="mailto:hello@myrtleandmist.com" className="hover:text-white transition-colors">Contact</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Disclaimer</a></li>
             </ul>

@@ -1,22 +1,24 @@
+'use client';
+
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import { Helmet } from 'react-helmet-async';
 import { useTheme } from '../components/ThemeContext';
 import Breadcrumbs from '../components/Breadcrumbs';
 
 /**
- * PlantPage — `/plants/:slug`
+ * PlantEnergyPage — `/plants/:slug/energy`
  *
- * Serves the Myrtle (care-focused) view of a plant profile.
- * The companion Mist (energy-focused) view lives at `/plants/:slug/energy`.
+ * Serves the Mist (energy/spiritual) view of a plant profile.
+ * The companion Myrtle (care-focused) view lives at `/plants/:slug`.
  *
  * Both views share the same source file: content/plants/[slug].md
- * Content is differentiated by frontmatter sections once the data layer
- * is wired up (e.g., via a Vite glob import or a build-time JSON manifest).
  */
-const PlantPage: React.FC = () => {
+const PlantEnergyPage: React.FC = () => {
   const { theme } = useTheme();
-  const { slug } = useParams<{ slug: string }>();
+  const params = useParams();
+  const slug = params?.slug as string | undefined;
 
   const displaySlug = slug ?? '';
   const displayName = displaySlug
@@ -27,15 +29,15 @@ const PlantPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>{displayName} Care Guide | Myrtle &amp; Mist</title>
+        <title>{displayName} Energy Profile | Myrtle &amp; Mist</title>
         <meta
           name="description"
-          content={`Complete care guide for ${displayName} — light, watering, soil, and propagation tips.`}
+          content={`The energetic and spiritual properties of ${displayName} — chakras, elements, and ritual uses.`}
         />
-        <link rel="canonical" href={`https://myrtleandmist.com/plants/${displaySlug}/`} />
+        <link rel="canonical" href={`https://myrtleandmist.com/plants/${displaySlug}/energy/`} />
       </Helmet>
 
-      <Breadcrumbs title={`${displayName} — Care Guide`} />
+      <Breadcrumbs title={`${displayName} — Energy Profile`} />
 
       <article className={`min-h-[70vh] py-16 px-4 theme-transition ${
         theme === 'myrtle' ? 'bg-white text-myrtle-text' : 'bg-mist-bg text-mist-text'
@@ -44,34 +46,35 @@ const PlantPage: React.FC = () => {
 
           {/* Dual-view switcher */}
           <div className="flex gap-4 mb-12">
-            <span className={`px-4 py-1.5 text-xs font-bold uppercase tracking-widest border ${
-              theme === 'myrtle'
-                ? 'bg-myrtle-accent text-white border-myrtle-accent'
-                : 'bg-mist-accent text-mist-bg border-mist-accent'
-            }`}>
-              Care Guide
-            </span>
             <Link
-              to={`/plants/${displaySlug}/energy`}
+              href={`/plants/${displaySlug}`}
               className={`px-4 py-1.5 text-xs font-bold uppercase tracking-widest border transition-colors ${
                 theme === 'myrtle'
                   ? 'text-myrtle-text border-myrtle-accent/40 hover:bg-myrtle-secondary'
                   : 'text-mist-text border-mist-accent/40 hover:bg-mist-secondary'
               }`}
             >
-              Energy Profile
+              Care Guide
             </Link>
+            <span className={`px-4 py-1.5 text-xs font-bold uppercase tracking-widest border ${
+              theme === 'myrtle'
+                ? 'bg-myrtle-accent text-white border-myrtle-accent'
+                : 'bg-mist-accent text-mist-bg border-mist-accent'
+            }`}>
+              Energy Profile
+            </span>
           </div>
 
           <h1 className={`text-4xl md:text-5xl mb-6 ${
             theme === 'myrtle' ? 'font-geo font-bold' : 'font-serif'
           }`}>
-            {displayName}
+            {displayName}: Energy Profile
           </h1>
 
           <p className="opacity-50 text-sm mb-12">
-            Plant care content for <code className="font-mono">/plants/{displaySlug}/</code> is coming soon.
-            Add your content to <code className="font-mono">content/plants/{displaySlug}.md</code>.
+            Energy content for <code className="font-mono">/plants/{displaySlug}/energy/</code> is coming soon.
+            Add the <code className="font-mono">energy</code> frontmatter section to{' '}
+            <code className="font-mono">content/plants/{displaySlug}.md</code>.
           </p>
 
           <div className={`p-6 border rounded-sm text-sm opacity-60 ${
@@ -86,4 +89,4 @@ const PlantPage: React.FC = () => {
   );
 };
 
-export default PlantPage;
+export default PlantEnergyPage;

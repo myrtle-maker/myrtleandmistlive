@@ -1,11 +1,14 @@
+'use client';
+
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useTheme } from './ThemeContext';
 import { ARTICLES } from '../data/articles';
 
 const ContentHub: React.FC = () => {
   const { theme } = useTheme();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   // Only show first 3 articles for preview
   const featuredArticles = ARTICLES.slice(0, 3);
@@ -32,7 +35,7 @@ const ContentHub: React.FC = () => {
             </p>
           </div>
           <button
-            onClick={() => navigate('/the-guide')}
+            onClick={() => router.push('/the-guide')}
             className={`mt-6 md:mt-0 border-b pb-1 uppercase text-sm tracking-widest theme-transition ${
               theme === 'myrtle'
                 ? 'text-myrtle-text border-myrtle-text hover:text-myrtle-accent hover:border-myrtle-accent'
@@ -49,7 +52,7 @@ const ContentHub: React.FC = () => {
             return (
               <Link
                 key={article.id}
-                to={`/journal/${article.id}`}
+                href={`/journal/${article.id}`}
                 className={`group rounded-xl overflow-hidden border theme-transition transform hover:-translate-y-2 duration-500 block ${
                   theme === 'myrtle'
                     ? 'bg-white border-gray-100 shadow-sm hover:shadow-xl'

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { useTheme } from './ThemeContext';
 import { THEME_CONTENT } from '../data/themeContent';
