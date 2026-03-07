@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useRouter, usePathname } from 'next/navigation';
 import { NAV_LINKS } from '../data/navigation';
 import { PILLAR_CONTENT } from '../data/pillarContent';
 import { ARTICLES } from '../data/articles';
@@ -13,8 +15,8 @@ const Header: React.FC = () => {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
   const { theme } = useTheme();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
   const dropdownTimeout = useRef<number | null>(null);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const Header: React.FC = () => {
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
     setMobileExpanded(null);
-  }, [location.pathname]);
+  }, [pathname]);
 
   const getHeaderClasses = () => {
     if (!isScrolled && !activeDropdown && !isMobileMenuOpen) return 'bg-transparent py-6 border-transparent';
@@ -76,13 +78,13 @@ const Header: React.FC = () => {
     setActiveDropdown(null);
 
     if (!link.hash) {
-      navigate(link.path);
+      router.push(link.path);
     } else {
-      if (location.pathname === link.path) {
+      if (pathname === link.path) {
         const el = document.querySelector(link.hash);
         if (el) el.scrollIntoView({ behavior: 'smooth' });
       } else {
-        navigate(link.path);
+        router.push(link.path);
         setTimeout(() => {
           const el = document.querySelector(link.hash as string);
           if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -107,7 +109,7 @@ const Header: React.FC = () => {
               <button
                 key={cat.id}
                 onClick={() => {
-                  navigate('/the-guide');
+                  router.push('/the-guide');
                   setTimeout(() => {
                     const el = document.getElementById(cat.id);
                     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -141,7 +143,7 @@ const Header: React.FC = () => {
             className={`col-span-4 p-6 rounded-xl flex flex-col justify-end relative overflow-hidden group cursor-pointer ${
               theme === 'myrtle' ? 'bg-myrtle-secondary' : 'bg-mist-secondary'
             }`}
-            onClick={() => { navigate('/the-guide'); setActiveDropdown(null); }}
+            onClick={() => { router.push('/the-guide'); setActiveDropdown(null); }}
           >
             <div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
             <h4 className={`text-xs font-bold uppercase tracking-widest mb-2 relative z-10 ${
@@ -168,7 +170,7 @@ const Header: React.FC = () => {
             return (
               <div
                 key={article.id}
-                onClick={() => { navigate('/journal/' + article.id); setActiveDropdown(null); }}
+                onClick={() => { router.push('/journal/' + article.id); setActiveDropdown(null); }}
                 className="group cursor-pointer"
               >
                 <div className="aspect-video rounded-lg overflow-hidden mb-3 relative">
@@ -211,7 +213,7 @@ const Header: React.FC = () => {
         {/* Logo */}
         <div className="flex-shrink-0 z-50">
           <button
-            onClick={() => navigate('/')}
+            onClick={() => router.push('/')}
             className={`focus:outline-none theme-transition ${
               isScrolled
                 ? (theme === 'myrtle' ? 'text-myrtle-text' : 'text-mist-text')
@@ -342,7 +344,7 @@ const Header: React.FC = () => {
                         <button
                           key={cat.id}
                           onClick={() => {
-                            navigate('/the-guide');
+                            router.push('/the-guide');
                             setIsMobileMenuOpen(false);
                             setTimeout(() => {
                               const el = document.getElementById(cat.id);
@@ -357,7 +359,7 @@ const Header: React.FC = () => {
                         </button>
                       ))}
                       <button
-                        onClick={() => { navigate('/the-guide'); setIsMobileMenuOpen(false); }}
+                        onClick={() => { router.push('/the-guide'); setIsMobileMenuOpen(false); }}
                         className={`block text-sm font-bold mt-4 uppercase ${
                           theme === 'myrtle' ? 'text-myrtle-accent' : 'text-mist-accent'
                         }`}

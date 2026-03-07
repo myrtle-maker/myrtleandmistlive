@@ -6,22 +6,102 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://myrtleandmist.com/the-guide</loc>
+    <loc>https://myrtleandmist.com/plant-care/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/plant-energy/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/apothecary/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/about/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/contact/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/privacy-policy/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/terms-of-service/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/how-we-review/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/plants/monstera/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://myrtleandmist.com/journal/monstera-guide</loc>
+    <loc>https://myrtleandmist.com/plants/monstera/energy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/plants/pothos/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/plants/pothos/energy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/plants/snake-plant/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/plants/snake-plant/energy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/guides/potting-mix-guide/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://myrtleandmist.com/journal/propagation-101</loc>
+    <loc>https://myrtleandmist.com/guides/pruning-basics/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://myrtleandmist.com/journal/sacred-spaces</loc>
+    <loc>https://myrtleandmist.com/guides/crystal-clearing/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/guides/lunar-planting/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/reviews/arcadia-grow-light/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://myrtleandmist.com/reviews/haws-watering-can/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

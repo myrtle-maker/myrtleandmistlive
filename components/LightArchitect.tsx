@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useTheme } from './ThemeContext';
 import { LIGHT_ZONES } from '../data/lightZones';
 
@@ -7,7 +9,7 @@ type ObstructionType = 'none' | 'sheer' | 'trees' | 'blinds';
 
 const LightArchitect: React.FC = () => {
   const { theme } = useTheme();
-  const navigate = useNavigate();
+  const router = useRouter();
   const [distance, setDistance] = useState(2);
   const [direction, setDirection] = useState<'N' | 'E' | 'S' | 'W'>('S');
   const [obstruction, setObstruction] = useState<ObstructionType>('none');
@@ -267,7 +269,7 @@ const LightArchitect: React.FC = () => {
                   return (
                     <button
                       key={idx}
-                      onClick={() => isLink && navigate(plant.linkPath!)}
+                      onClick={() => isLink && router.push(plant.linkPath!)}
                       disabled={!isLink}
                       className={`group p-3 rounded-lg text-left transition-all relative overflow-hidden border flex items-center justify-between ${
                         theme === 'myrtle'

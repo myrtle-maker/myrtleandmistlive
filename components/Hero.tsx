@@ -1,12 +1,14 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useTheme } from './ThemeContext';
 import { THEME_CONTENT } from '../data/themeContent';
 
 const Hero: React.FC = () => {
   const { theme } = useTheme();
   const content = THEME_CONTENT[theme];
-  const navigate = useNavigate();
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -81,7 +83,7 @@ const Hero: React.FC = () => {
 
         <div className="flex justify-center items-center gap-4">
           <button
-            onClick={() => navigate('/the-guide')}
+            onClick={() => router.push('/the-guide')}
             className={`px-10 py-4 rounded-sm font-bold uppercase tracking-widest text-xs transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 ${
               theme === 'myrtle'
                 ? 'bg-myrtle-accent text-white hover:bg-myrtle-text ring-1 ring-myrtle-accent'

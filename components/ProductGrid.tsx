@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { MYRTLE_PRODUCTS, MIST_PRODUCTS } from '../data/products';
 import { useTheme } from './ThemeContext';

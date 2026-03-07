@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { Helmet } from 'react-helmet-async';
 import { useTheme } from '../components/ThemeContext';
 import { PILLAR_CONTENT } from '../data/pillarContent';
@@ -8,7 +10,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 
 const GuidePage: React.FC = () => {
   const { theme } = useTheme();
-  const navigate = useNavigate();
+  const router = useRouter();
   const data = PILLAR_CONTENT[theme];
 
   const handleScrollToSection = (id: string) => {
@@ -151,7 +153,7 @@ const GuidePage: React.FC = () => {
                         return (
                           <div
                             key={article.id}
-                            onClick={() => navigate('/journal/' + article.id)}
+                            onClick={() => router.push('/journal/' + article.id)}
                             className={`group cursor-pointer rounded-lg overflow-hidden border theme-transition flex flex-col ${
                               theme === 'myrtle'
                                 ? 'bg-white border-gray-100 hover:shadow-lg'

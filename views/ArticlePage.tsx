@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useEffect, useMemo, useState, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useRouter } from 'next/navigation';
 import { Helmet } from 'react-helmet-async';
 import { useTheme } from '../components/ThemeContext';
 import { ARTICLES } from '../data/articles';
@@ -12,9 +14,10 @@ interface TocItem {
 }
 
 const ArticlePage: React.FC = () => {
-  const { articleId } = useParams<{ articleId: string }>();
+  const params = useParams();
+  const articleId = params?.articleId as string | undefined;
   const { theme } = useTheme();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const article = ARTICLES.find(a => a.id === articleId) || ARTICLES[0];
   const activeContent = article[theme];
@@ -352,7 +355,7 @@ const ArticlePage: React.FC = () => {
                 return (
                   <div
                     key={related.id}
-                    onClick={() => navigate('/journal/' + related.id)}
+                    onClick={() => router.push('/journal/' + related.id)}
                     className={`group cursor-pointer rounded-lg overflow-hidden border theme-transition transform hover:-translate-y-1 transition-all duration-300 ${
                       theme === 'myrtle'
                         ? 'bg-white border-gray-100 shadow-sm hover:shadow-md'
